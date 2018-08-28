@@ -5,6 +5,8 @@ class RocketTest < Minitest::Test
   # Write your tests here!
   def setup
     @rocket = Rocket.new
+    @val = Rocket.new(name: "Val", colour: "brown", flying: false )
+    @bob = Rocket.new(name: "Bob", colour: "blue", flying: true )
   end
 
 
@@ -33,5 +35,59 @@ class RocketTest < Minitest::Test
     actual = @rocket.name
   end
 
+  def test_colour_with_given_colour
+    @rocket = Rocket.new(colour: "red")
+    expected = "red"
+    actual = @rocket.colour
+    assert_equal(expected, actual)
+  end
 
+  def test_flying_returns_flying
+    @rocket = Rocket.new(flying: true)
+    expected = true
+    actual = @rocket.flying?
+    assert_equal(expected, actual)
+  end
+
+  def test_lift_off_flying_returns_false_if_flying_is_true
+    @rocket = Rocket.new(flying: true)
+    expected = false
+    actual = @rocket.lift_off
+    assert_equal(expected, actual)
+  end
+
+  def test_lift_off_flying_returns_true_if_flying_is_false
+    @rocket = Rocket.new(flying: false)
+    expected = true
+    actual = @rocket.lift_off
+    assert_equal(expected, actual)
+  end
+
+  def test_land_if_flying_return_true
+    @rocket = Rocket.new(flying: true)
+    expected = true
+    actual = @rocket.land
+    assert_equal(expected, actual)
+  end
+
+  def test_land_if_flying_return_false
+    @rocket = Rocket.new(flying: false)
+    expected = false
+    actual = @rocket.land
+    assert_equal(expected, actual)
+  end
+
+  def test_status_if_flying_return_sentence_flying_through_sky
+
+    expected = "Rocket #{name} is flying through the sky!"
+    actual = @rocket.status
+    assert_equal(expected, actual)
+  end
+
+  def test_status_if_flying_return_sentence_ready_lift_off
+
+    expected = "Rocket #{name} is ready for lift off!"
+    actual = @rocket.status
+    assert_equal(expected, actual)
+  end
 end
