@@ -56,6 +56,14 @@ class RocketTest < Minitest::Test
     assert_equal(expected, actual)
   end
 
+  def test_flying_is_false_after_rocket_lands
+    @rocket = Rocket.new(flying: true)
+    expected = false
+    @rocket.land
+    actual = @rocket.flying?
+    assert_equal(expected, actual)
+  end
+
   def test_lift_off_flying_returns_true_if_flying_is_false
     @rocket = Rocket.new(flying: false)
     expected = true
@@ -79,15 +87,15 @@ class RocketTest < Minitest::Test
 
   def test_status_if_flying_return_sentence_flying_through_sky
 
-    expected = "Rocket #{name} is flying through the sky!"
-    actual = @rocket.status
+    expected = "Rocket Bob is flying through the sky!"
+    actual = @bob.status
     assert_equal(expected, actual)
   end
 
   def test_status_if_flying_return_sentence_ready_lift_off
 
-    expected = "Rocket #{name} is ready for lift off!"
-    actual = @rocket.status
+    expected = "Rocket Val is ready for lift off!"
+    actual = @val.status
     assert_equal(expected, actual)
   end
 end
